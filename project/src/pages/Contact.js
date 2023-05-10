@@ -1,8 +1,17 @@
 import React from "react";
 import PizzaLeft from "../assets/pizzaLeft.jpg";
 import "../styles/Contact.css";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Contact() {
+  const nav = useNavigate();
+  const { isAuth } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!isAuth) nav("/login");
+  }, [isAuth, nav]);
   return (
     <div className="contact">
       <div

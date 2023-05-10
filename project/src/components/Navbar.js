@@ -1,34 +1,41 @@
-import React, { useState } from 'react'
 import Logo from "../assets/pizzaLogo.png";
-import {Link} from "react-router-dom";
-import ReorderIcon from "@mui/icons-material/Reorder";
-import '../styles/Navbar.css'
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from '../actions/userActions'
+import "../styles/Navbar.css";
 
-function Navbar() {
-
-  const [openLinks, setOpenLinks] = useState(false)
-
-  const toggleNavbar = () => {
-setOpenLinks(!openLinks);
-  }
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.user)
+ const logout = (e) => {
+  e.preventDefault();
+  dispatch(logoutAction())
+ }
   return (
     <div className="navbar">
-      <div className="leftSide" id={openLinks ? "open" : "close"}>
+      <div className="leftSide">
         <img src={Logo} />
         <div className="hiddenLinks">
-          <Link to="/"> Home </Link>
-          <Link to="/menu"> Menu </Link>
-          <Link to="/about"> About </Link>
-          <Link to="/contact"> Contact </Link>
-          <Link id='Register' to="/Register"> Register </Link>
+          {isAuth ? (
+            <>
+              <Link to="/home"> Home </Link>
+              <Link to="/Profil">Profile</Link>
+              <Link to="/menu">Menu</Link>
+              <Link to="/contact">Contact</Link>
+              <Link to="/about">About</Link>
+              <button onClick={logout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/about"> About </Link>
+              <Link to="login"> Login </Link>
+              <Link to="register"> Register </Link>
+            </>
+          )}
         </div>
-        <div className="rightSide"></div>
-        <button onClick={toggleNavbar}>
-          <ReorderIcon />
-        </button>
       </div>
     </div>
   );
-}
 
-export default Navbar
+          }
+export default Navbar;
