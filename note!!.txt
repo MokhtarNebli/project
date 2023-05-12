@@ -2,4 +2,7 @@ usenavigate habetech temchy khater version ta3 react-router-dom kdim khater lezm
 
                CBONNNNNN
 
-localStorege.remove item nheb enahi ken el log out ou nkhali l:hostorisue ta3 panier 
+localStorege.remove item nheb enahi ken el log out ou nkhali l:historique ta3 panier 
+
+
+nav is not a function ki ta3mel logout yab9a msg 

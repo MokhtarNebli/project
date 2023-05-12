@@ -8,10 +8,12 @@ import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profil";
-
+import AdminDashbord from "./pages/AdminDashbord";
+import AdminProtectRoute from "./components/AdminProtectRoutes";
 
 
 import {Routes, Route} from "react-router-dom";
+import ProtectRoute from "./components/ProtectRoute";
 
 function App() {
   return (
@@ -19,13 +21,18 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/home" exact element={<Home />} />
-        <Route path="/menu" exact element={<Menu />} />
         <Route path="/about" exact element={<About />} />
-        <Route path="/Contact" exact element={<Contact />} />
-        <Route path="/Register" exact element={<Register />} />
-        <Route path="/Login" exact element={<Login />} />
-        <Route path="/profil" exact element={<Profile />} />
+        <Route path="/register" exact element={<Register />} />
+        <Route path="/login" exact element={<Login />} />
+        <Route element={<ProtectRoute />}>
+          <Route path="/home" exact element={<Home />} />
+          <Route path="/menu" exact element={<Menu />} />
+          <Route path="/contact" exact element={<Contact />} />
+          <Route path="/profil" exact element={<Profile />} />
+        </Route>
+        <Route exact element={<AdminProtectRoute />}>
+          <Route path="/adminDashbord" exact element={<AdminDashbord />} />
+        </Route>
       </Routes>
       <Footer />
     </div>

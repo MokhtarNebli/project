@@ -7,12 +7,12 @@ const Login = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { register, handleSubmit } = useForm();
-  const { isAuth } = useSelector((state) => state.user);
-  useEffect(() => {
-    if (isAuth) nav('/home');
-  });[isAuth, nav]
+  const { isAuth ,errors} = useSelector((state) => state.user);
+ // useEffect(() => {
+   // if (isAuth) nav('/home');
+  //});[isAuth, nav]
   const loginUser = (data) => {
-    dispatch(loginAction(data));
+    dispatch(loginAction(data, nav));
   };
   return (
     <div>
@@ -23,7 +23,9 @@ const Login = () => {
         <label>password</label>
         <input required type="password" {...register("password")} />
         <br />
+        {errors && <p>{errors}</p>}
         <button>login</button>
+        
       </form>
     </div>
   );

@@ -1,16 +1,14 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+
+
+import { Link,  } from "react-router-dom";
 import BannerImage from "../assets/pizza.jpeg";
 import "../styles/Home.css";
 
 const Home = () => {
-  const nav = useNavigate();
-  const { isAuth } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    if (!isAuth) nav('/login');
-  }, [isAuth, nav]);
+ 
+  //useEffect(() => {
+   // if (!isAuth) nav('/login');
+  // }, [isAuth, nav]);
 
   return (
     <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>

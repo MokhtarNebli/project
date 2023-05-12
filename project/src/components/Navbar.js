@@ -6,7 +6,7 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state) => state.user)
+  const { isAuth,userInfo } = useSelector((state) => state.user)
  const logout = (e) => {
   e.preventDefault();
   dispatch(logoutAction())
@@ -14,15 +14,20 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="leftSide">
-        <img src={Logo} />
+        <div className="logobutton">
+          <Link to="/home">
+            <img src={Logo} />
+            <button className="btn"></button>
+          </Link>
+        </div>
         <div className="hiddenLinks">
           {isAuth ? (
             <>
-              <Link to="/home"> Home </Link>
-              <Link to="/Profil">Profile</Link>
+              <Link to="/"> Home </Link>
               <Link to="/menu">Menu</Link>
-              <Link to="/contact">Contact</Link>
               <Link to="/about">About</Link>
+              <Link to="/contact">Contact</Link>
+              <Link to="/Profil">{userInfo.name}</Link>
               <button onClick={logout}>Logout</button>
             </>
           ) : (

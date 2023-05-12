@@ -7,6 +7,9 @@ app.use(cors('http://localhost:5000'));
 
 //Routes
 app.use('/api/person', require('./routes/personRouters'));
+app.use("/api/product", require("./routes/productRoutes"));
+
+
 
 //connection to database
 const connectDB = require('./config/connectDB');

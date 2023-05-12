@@ -7,10 +7,10 @@ import {
 } from "../actions/types";
 
 const initState = {
-  userInfo: {},
-  token: localStorage.getItem('token') || null,
+  userInfo: JSON.parse(localStorage.getItem("userInfo")) ||{},
+  token: localStorage.getItem("token") || null,
   errors: null,
-  isAuth: Boolean (localStorage.getItem('isAuth')) || false,
+  isAuth: Boolean(localStorage.getItem("isAuth")) || false,
 };
 
 const userReducer = (state = initState, {type, payload}) => {
@@ -27,6 +27,7 @@ const userReducer = (state = initState, {type, payload}) => {
       case LOGIN_SUCCESS:
         localStorage.setItem("token", payload.token);
         localStorage.setItem("isAuth", true);
+        localStorage.setItem("userInfo",JSON.stringify(payload.existUser));
         return {
           ...state,
           userInfo: payload.existUser,
